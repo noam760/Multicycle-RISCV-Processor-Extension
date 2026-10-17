@@ -1,4 +1,4 @@
-# # Multicycle RISC-V Processor – Custom Instruction Extension
+# Multicycle RISC-V Processor – Custom Instruction Extension
 
 ## Overview
 This repository contains a SystemVerilog implementation of a 32-bit Multicycle RISC-V processor[span_32](start_span)[span_32](end_span)[span_33](start_span)[span_33](end_span). The baseline processor architecture supports core RV32I instructions (`LW`, `SW`, R-type ALU operations, `BEQ`, and `JAL`) and was architected and extended to support a custom multi-cycle immediate instruction (`addi` with bitwise inversion)[span_34](start_span)[span_34](end_span)[span_35](start_span)[span_35](end_span)[span_36](start_span)[span_36](end_span).
