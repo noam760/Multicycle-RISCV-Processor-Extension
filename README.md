@@ -18,7 +18,7 @@ To compute sequential arithmetic (`ADD`) and logical (`XOR`) operations using a 
 * **ALU Output Feedback Path (`ALUA_ALUOUT`):** Expanded the ALU `A` input multiplexer (`asel`) to accept the latched `aluout` register value from the previous cycle (`2'b10`), feeding the intermediate addition result directly back into the ALU.
 * **Hardcoded Inversion Constant (`ALUB_1`):** Expanded the ALU `B` input multiplexer (`bsel`) with a dedicated constant input (`32'hffff_ffff`, selected via `2'b10`) to perform the bitwise XOR inversion.
 
-![Modified Datapath Architecture](images/datapath.png)
+![Modified Datapath Architecture](images/datapath.jpg)
 
 ### 2. Control FSM Expansion (`rv_ctl.sv`)
 Three dedicated states were integrated into the Mealy Control FSM following the `DECODE` stage whenever `opcode_funct3` matches `I_TYPE` (`10'b0010011_000`):
@@ -26,7 +26,7 @@ Three dedicated states were integrated into the Mealy Control FSM following the 
 2. **`ITYPE_XOR_EXEC` (Cycle 4):** Routes the latched intermediate sum (`asel = ALUA_ALUOUT`) and the all-ones constant (`bsel = ALUB_1`) into the ALU, executing `ALU_XOR`. The final result is latched into `aluout`.
 3. **`ITYPE_WB` (Cycle 5):** Routes `aluout` to the register file write-back bus (`wbsel = WB_ALUOUT`) and asserts `regwen = 1'b1` to store the result in `rd` before transitioning back to `FETCH`.
 
-![Control FSM Diagram](images/fsm.png)
+![Control FSM Diagram](images/fsm.jpg)
 
 ---
 
@@ -53,7 +53,7 @@ The processor was verified in **ModelSim** using `rv_sim.sv` and the assembly te
 3. Writes the result from `a2` to memory address `16` (`sw a2, 16(x0)`).
 4. Triggers the testbench completion sequence by writing `0xDEAD` to address `0xFFFF`, dumping the final memory state to `dmem_out.hex`.
 
-![ModelSim Waveform Simulation](images/waveform.png)
+![ModelSim Waveform Simulation](images/waveform.jpg)
 
 ### Running the Simulation in ModelSim
 ```tcl
